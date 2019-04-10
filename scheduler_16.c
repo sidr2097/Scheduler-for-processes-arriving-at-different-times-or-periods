@@ -1,11 +1,19 @@
+
+//	THIS IS A PROGRAM TO SCHEDULE PROCESSES BASED ON THE ARRIVAL TIME ie First Come First Serve basis
+
 #include<stdio.h>
 
 int main()
 {
 	int n,i,bt[10],at[10],t=3,wt[10],k[10];
+	
+	//taking number of processes
 	printf("Enter the number of processes : ");
 	scanf("%d",&n);
 	
+	
+	
+	///taking arrival time at[] and burst time bt[] form user
 	for(i=0;i<n;i++)
 	{
 		printf("\nEnter the arrival time of P[%d] : ",i+1);
@@ -15,12 +23,17 @@ int main()
 		scanf("%d",&bt[i]);
 	}
 	
+	// k is total time till which the previous processes have run
 	k[0]=0;
 	for(i=0;i<n;i++)
 	{
-		wt[i]=0;
+		wt[0]=0;		//initialising wait time for first process as zero
 		k[i+1]=k[i]+bt[i];
 		wt[i+1]=k[i+1]-at[i+1];
+		if(wt[i+1]<0)
+		{
+			wt[i+1]=0;
+		}
 	}
 	
 	
